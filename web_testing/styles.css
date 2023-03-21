@@ -1,0 +1,126 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,700;1,400&display=swap');
+
+body{
+    font-family: 'Ubuntu', sans-serif;
+}
+/*-- navigation --*/
+
+.navbar{
+    background-color: rgba(150,93,80,0.5);
+}
+
+.nav-item:hover{
+    background-color: rgb(150,93,80);
+}
+
+.nav-link{
+    color:white;
+}
+
+.nav-link:hover{
+    color:black;
+}
+
+/*--layout--*/
+
+.container{
+    padding:0; 
+    background-color: rgb(240,207,195);
+}
+
+.img-container{
+    position: relative;
+    text-align: center;
+    color: rgb(255,255,255);
+}
+
+.img-quote{
+    padding: 0 2em 2em 2em;
+    
+}
+
+.middle{
+    transition: .5s ease;
+    opacity: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    text-align: center;
+    color: rgb(0,0,0);
+    font-size: 40px;
+    padding: 16px 32px; 
+}
+
+
+.banner{
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    transform: translate(-10%, -50%);
+    font-size: 8em;
+}
+
+.col-lg-4:hover{
+    opacity: 0.5;
+}
+
+/*--text--*/
+
+h1{
+    text-align: center;
+    padding: 1em 1em 0.5em 1em;
+    margin: auto;
+}
+
+h2{
+    text-align: center;
+    margin: auto;
+    padding: 1em 0 0 0;
+}
+
+p{
+    padding:1em 1em 1em 1em;
+    margin: auto;
+    text-align: center;
+}
+
+.quote{
+    text-align: center;
+    font-size: 2em;
+    font-style: italic;
+    padding: 1em 1em;
+    color: rgb(255,255,255); 
+}
+
+/*---footer---*/
+.footer-content{
+    background-color: rgb(240,207,195);
+    text-align: center;
+    padding: 0.5em 0 0.5em 0;
+    color: white;
+}
+
+.footer-content p:first-child{
+    font-weight: 600;
+    font-size: 1.5em;
+}
+
+/*--form--*/
+
+.form-group{
+    padding: 1em;
+}
+
+.btn{
+    display: block;
+    margin: auto;
+}
+
+.btn:hover{
+    color: rgba(150,93,80,0.5);
+    background-color: white;
+}

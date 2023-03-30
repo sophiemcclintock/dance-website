@@ -12,72 +12,90 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<nav class="navbar navbar-expand-sm bg fixed-top">
+<nav id="Home" class="navbar navbar-expand-sm fixed-top">
   <div class="container-fluid">
-    <ul class="navbar-nav">
-    <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">About<span class="caret"></span></a>
-        <ul class="dropdown-menu">
-          <li><a href="#">Our Story</a></li>
-          <li><a href="#">Staff</a></li>
-          <li><a href="#">Competitions</a></li>
-          <li><a href="#">Shows</a></li>
-        </ul>
+   
+   <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="collapsibleNavbar">
+      <ul class="navbar-nav">
+        <a class="navbar-brand" href="#Home"><img class="nav-logo" src="Riptide-1.png"></a>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">About</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="#">Our Story</a></li>
+            <li><a class="dropdown-item" href="#">Staff</a></li>
+            <li><a class="dropdown-item" href="#">Competitions</a></li>
+            <li><a class="dropdown-item" href="#">Shows</a></li>
+          </ul>
         </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Classes</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Enrol</a>
-      </li>
-    </ul>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Classes</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Enrol</a>
+        </li> 
+      </ul>
+    <div class="ms-auto"><a class="nav-link btn btn-outline" href="">Log in</a></div>
   </div>
-</nav>
+</div>
+    </nav>
  
 <div class="img-container">
-<img src="molly_banner3.jpg" alt="">
-<div class="banner">Riptide</div>
-    </div>
-<br>
-<div class="container-lg">
-<h1>WELCOME</h1>
+<img class="img-fluid" src="molly_banner3.jpg" alt="">
+<div class="banner">RIPTIDE</div>
+<div class="banner-quote">"There are shortcuts to happiness, and dancing at Riptide is one of them"</div>
+</div>
+<h1>WELCOME!</h1>
 <p>Based at Samuel Marsden Collegiate School, Riptide is a dance club who believe in dancing for the love of it. We offer a wide range of styles for all different abilities, whether you are a beginning or an advanced dancer, we would love to have you join our whanau. We are 100% devoted to encouraging a love of dance, whether it be through competitive achievements or purely for pleasure. </p>
-<div class="row">
-<div class="transparency">
-<div class="col-lg-4 img-transparent"> <img class="img-fluid" src="lucy_box.jpg" alt=""> </div>
-<div class="middle">
-    <div class="transparent-text">About</div>
-    </div>
-</div> 
-<div class="transparency">
-<div class="col-lg-4 img-transparent"> <img class="img-fluid" src="eva_box.jpg" alt=""> </div>
-<div class="middle">
-    <div class="transparent-text">Staff</div>
-    </div>
+<!--<div class="container">-->
+<div class="container-fluid">
+    
+    <div class="row py-4">
+<div class="col-lg-4 position-relative fader"> <img class="img-fluid mx-auto d-block" src="lucy_box.jpg" alt=""> 
+   <div class="middle"><a class="box-link" href="#Contact">Contact</a></div>
 </div>
-<div class="transparency">
-<div class="col-lg-4 img-transparent"> <img class="img-fluid"src="knee_box.jpg" alt=""> </div>
-<div class="middle">
-    <div class="transparent-text">Contact</div>
-    </div>
+
+<div class="col-lg-4 position-relative fader"> <img class="img-fluid mx-auto d-block" src="eva_box.jpg" alt=""> 
+    <div class="middle"><a class="box-link" href="#">Competitions</a></div>
 </div>
+
+<div class="col-lg-4 position-relative fader"> <img class="img-fluid mx-auto d-block" src="knee_box.jpg" alt=""> 
+     <div class="middle"><a class="box-link" href="#">Staff</a></div>
 </div>
 </div>
     
+    </div>
+<!--</div>-->
+
+<p>If you have any questions or just wanted to follow our updates, feel free to fill in this form <br> or follow us on our social media accounts, we would love to here from you!</p> 
 <br>
-<div class="container-lg">
-<p class="quote">"There are shortcuts to happiness, and dancing at Riptide is one of them"</p>
-<div> <img class="img-quote" src="Dance_solo_leg_mount2.jpg" alt=""> </div>
-<p>Original Riptide student, Eva is in her final year and is intending to pursue dance into her university years</p>
+<div class="container"> 
+<h2 id="Contact">To Contact Us..</h2>
+<div class="form-group">
+  <label class="form-text" for="usr">Name:</label>
+  <input type="text" class="form-control" id="">
 </div>
- 
-<h2>Join us on Social Media</h2>
-<div> <img src="IMG_9851.jpg" alt=""> </div>
-    
+<div class="form-group">
+  <label class="form-text" for="email">Email:</label>
+  <input type="email" class="form-control" id="">
+</div>
+<div class="form-group">
+  <label class="form-text" for="email">Confirm Email:</label>
+  <input type="email" class="form-control" id="">
+</div>
+ <div class="form-group">
+  <label class="form-text" for="comment">Message:</label>
+  <textarea class="form-control" rows="5" id=""></textarea>
+</div>
+<button type="submit" class="btn btn-default">Submit</button>
+</div> 
+<br>  
+
 <footer class="footer-content">
-    <p>Riptide</p>
-    <p>Join the Whanau</p>
-    <div>&copy; 2010</div>
+    <img class="footer-image" src="Riptide-1.png">
+    <div>&copy; 2019</div>
     </footer>
     
 </body>

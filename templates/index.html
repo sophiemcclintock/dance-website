@@ -1,0 +1,59 @@
+{% extends "layout.html" %}
+
+{% block title%}
+Riptide
+{% endblock %}
+
+{% block banner %}
+static/images/molly_banner3.jpg
+{% endblock %}
+
+{% block content %}
+
+<h1>WELCOME!</h1>
+<p>Based at Samuel Marsden Collegiate School, Riptide is a dance club who believe in dancing for the love of it. We offer a wide range of styles for all different abilities, whether you are a beginning or an advanced dancer, we would love to have you join our whanau. We are 100% devoted to encouraging a love of dance, whether it be through competitive achievements or purely for pleasure. </p>
+<!--<div class="container">-->
+<div class="container-fluid">
+
+    <div class="row py-4">
+<div class="col-lg-4 position-relative fader"> <img class="img-fluid mx-auto d-block" src="static/images/lucy_box.jpg" alt="">
+   <div class="middle"><a class="box-link" href="#Contact">Contact</a></div>
+</div>
+
+<div class="col-lg-4 position-relative fader"> <img class="img-fluid mx-auto d-block" src="static/images/eva_box.jpg" alt="">
+    <div class="middle"><a class="box-link" href="#">Competitions</a></div>
+</div>
+
+<div class="col-lg-4 position-relative fader"> <img class="img-fluid mx-auto d-block" src="static/images/knee_box.jpg" alt="">
+     <div class="middle"><a class="box-link" href="#">Staff</a></div>
+</div>
+</div>
+
+    </div>
+<!--</div>-->
+
+<p>If you have any questions or just wanted to follow our updates, feel free to fill in this form <br> or follow us on our social media accounts, we would love to here from you!</p>
+<br>
+<div class="container">
+<h2 id="Contact">To Contact Us..</h2>
+<div class="form-group">
+  <label class="form-text" for="usr">Name:</label>
+  <input type="text" class="form-control" id="">
+</div>
+<div class="form-group">
+  <label class="form-text" for="email">Email:</label>
+  <input type="email" class="form-control" id="">
+</div>
+<div class="form-group">
+  <label class="form-text" for="email">Confirm Email:</label>
+  <input type="email" class="form-control" id="">
+</div>
+ <div class="form-group">
+  <label class="form-text" for="comment">Message:</label>
+  <textarea class="form-control" rows="5" id=""></textarea>
+</div>
+<button type="submit" class="btn btn-default">Submit</button>
+</div>
+<br>
+
+{% endblock %}

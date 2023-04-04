@@ -1,25 +1,25 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return "<h1>Hello World</h1>"
+    return render_template("index.html")
 
 
 @app.route('/about')
 def about():
-    return "<h1>About Page</h1>"
+    return render_template("about.html")
 
 
 @app.route('/classes')
 def classes():
-    return "<h1>Classes Page</h1>"
+    return render_template("classes.html")
 
 
 @app.route('/enrol')
 def enrol():
-    return "<h1>Enrol Page</h1>"
+    return render_template("enrol.html")
 
 
 if __name__ == "__main__":

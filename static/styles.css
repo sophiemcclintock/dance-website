@@ -39,9 +39,13 @@ body{
 
 /*--layout--*/
 
-.container{
-    padding:0;
-    background-color: rgb(67,124,144);    
+.form-background{
+    background-color: rgb(67,124,144);
+
+}
+
+.background{
+    background-color: rgb(58,58,58);
 }
 
 .img-container{
@@ -124,7 +128,7 @@ h3{
     text-align: center;
     margin:auto;
     color: rgb(255,255,255);
-    padding: 1.4em 0 0 0;
+    padding: 1em 1em 0 1em;
     font-size: 2em;
 }
 
@@ -142,7 +146,7 @@ h5{
 }
 
 p{
-    padding:1em 4em 1em 4em;
+    padding:0 4em 0 4em;
     margin:auto;
     text-align: center;
     font-size: 1.3em;
@@ -204,8 +208,23 @@ p{
     max-width: 100%;
 }
 
+/*-- carousel --*/
+
+.carousel-item{
+    padding: 0 4em 2em 4em;
+}
 
 @media only screen and (max-width:768px) {
-    .banner{
+    .banner {
         font-size: 4em;
+
+    }
+
+    h5{
+        font-size: 1em;
+    }
+
+    p{
+        font-size: 1em;
+    }
     }

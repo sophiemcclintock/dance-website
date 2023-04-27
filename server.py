@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -17,9 +17,22 @@ def classes():
     return render_template("classes.html")
 
 
-@app.route('/enrol')
+@app.route('/enrol', methods=["GET", "POST"])
 def enrol():
-    return render_template("enrol.html")
+    if request.method == "POST":
+        f = request.form
+        print(f)
+        return render_template("confirm.html", form_data=f)
+
+    elif request.method == "GET":
+        temp_form_data={
+            "firstname" : "James",
+            "secondname" : "Harvey",
+            "age" : "14",
+            "email" : "jh@gmail.com",
+            "aboutme" : "I am interested in jazz and contemporary"
+        }
+        return render_template("enrol.html", **temp_form_data)
 
 
 if __name__ == "__main__":

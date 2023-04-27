@@ -15,9 +15,7 @@ body{
 .nav-item{
     margin: auto;
 }
-.nav-item:hover{
-    background-color: rgb(150,93,80);
-}
+
 
 .nav-link{
     color:white;
@@ -185,9 +183,8 @@ p{
 }
 
 .btn{
-    display: block;
-    margin: auto;
-    color: white;    
+    color: white;
+    margin: 0.2em;
 }
 
 .btn:hover{
@@ -212,6 +209,12 @@ p{
 
 .carousel-item{
     padding: 0 4em 2em 4em;
+}
+
+/*-- form --*/
+
+label, input[type='text'], input[type='email'], textarea{
+    font-size: 1.2em !important;
 }
 
 @media only screen and (max-width:768px) {

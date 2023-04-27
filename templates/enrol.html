@@ -9,5 +9,36 @@ static/images/molly_banner3.jpg
 {% endblock %}
 
 {% block content %}
-Enrol page here
+<h1>ENROL</h1>
+<div class="container container-fluid">
+<form action="{{ url_for('enrol') }}" method="POST">
+    <div>
+        <label for="firstname" class="form-label">First Name:</label>
+        <input type="text" class="form-control" id="firstname" name="firstname" placeholder="" value="{{firstname}}" required>
+    </div>
+    <div>
+        <label for="secondname" class="form-label">Second Name:</label>
+        <input type="text" class="form-control" id="secondname" name="secondname" placeholder="" value="{{secondname}}" required>
+    </div>
+    <div>
+        <label for="age" class="form-label">Age:</label>
+        <input type="text" class="form-control" id="age" name="age" placeholder="" value="{{age}}" required>
+    </div>
+    <div>
+        <label for="email" class="form-label">Email:</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="" value="{{email}}" required>
+    </div>
+    <div>
+        <label for="aboutme" class="form-label">What Dance would you be introduced in?:</label>
+        <textarea id="aboutme" class="form-control" name="aboutme" rows="7">{{aboutme}}</textarea>
+    </div>
+
+
+    <div class="text-end">
+        <button type="reset" class="btn btn-primary">Reset</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+    </div>
+</form>
+    </div>
 {% endblock %}

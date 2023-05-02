@@ -22,12 +22,13 @@
       <ul class="navbar-nav">
         <a class="navbar-brand" href="{{url_for('index')}}"><img class="nav-logo" src="static/images/Riptide-1.png"></a>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown">About</a>
+          <a class="nav-link dropdown-toggle" href="{{url_for('about')}}" role="button" data-bs-toggle="dropdown">About</a>
+
           <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="{{url_for('about')}}">Our Story</a></li>
-            <li><a class="dropdown-item" href="{{url_for('about')}}">Staff</a></li>
-            <li><a class="dropdown-item" href="{{url_for('about')}}">Competitions</a></li>
-            <li><a class="dropdown-item" href="{{url_for('about')}}">Shows</a></li>
+            <li><a class="dropdown-item" href="{{url_for('about')}}#">Our Story</a></li>
+            <li><a class="dropdown-item" href="{{url_for('about')}}#staff">Staff</a></li>
+            <li><a class="dropdown-item" href="{{url_for('about')}}#competitions">Competitions</a></li>
+            <li><a class="dropdown-item" href="{{url_for('about')}}#shows">Shows</a></li>
           </ul>
         </li>
         <li class="nav-item">
@@ -37,7 +38,7 @@
           <a class="nav-link" href="{{url_for('enrol')}}">Enrol</a>
         </li>
       </ul>
-    <div class="ms-auto"><a class="nav-link btn btn-outline" href="">Log in</a></div>
+    <div class="ms-auto"><a class="nav-link btn btn-outline" href="{{url_for('log_in')}}">Log in</a></div>
   </div>
 </div>
     </nav>

@@ -30,9 +30,15 @@ def enrol():
             "secondname" : "Harvey",
             "age" : "14",
             "email" : "jh@gmail.com",
-            "aboutme" : "I am interested in jazz and contemporary"
+            "typeofdance" : "I am interested in jazz and contemporary"
         }
         return render_template("enrol.html", **temp_form_data)
+
+
+@app.route('/log_in')
+def log_in():
+    return render_template("log_in.html")
+
 
 
 if __name__ == "__main__":

@@ -93,7 +93,6 @@ body{
 
 /* line behind titles */
 h1 {
-    border: 0px solid red;
     padding:0;
     overflow: hidden;
     color:rgb(150,93,80);
@@ -101,6 +100,7 @@ h1 {
     display: table;
     white-space: nowrap;
     margin: 0.75em 0;
+    scroll-margin-top: 3em;
 }
 h1:before, h1:after {
     border-top: 3px solid rgb(255,255,255);
@@ -179,7 +179,7 @@ p{
 /*--form--*/
 
 .form-group{
-    padding: 1em;
+    padding-top: 0.5em;
 }
 
 .btn{

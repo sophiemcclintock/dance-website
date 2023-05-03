@@ -17,6 +17,11 @@ def classes():
     return render_template("classes.html")
 
 
+@app.route('/news')
+def news():
+    return render_template("news.html")
+
+
 @app.route('/enrol', methods=["GET", "POST"])
 def enrol():
     if request.method == "POST":

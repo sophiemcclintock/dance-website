@@ -130,12 +130,11 @@ h3{
     font-size: 2em;
 }
 
+
 h4{
     text-align: center;
-    margin:auto;
     color: rgb(255,255,255);
-    font-size: 1.3em;
-    padding: 1em;
+    font-size: 2em;
 }
 
 h5{
@@ -148,6 +147,21 @@ p{
     margin:auto;
     text-align: center;
     font-size: 1.3em;
+}
+
+p.story-text{
+    text-align: center;
+    margin:auto;
+    color: rgb(255,255,255);
+    font-size: 1.3em;
+    padding: 1em;
+    line-height: 1.2em;
+}
+
+p.competition-text{
+    font-size: 1.2em;
+    color: white;
+    padding: 1em;
 }
 
 .column-text {
@@ -180,6 +194,8 @@ p{
 
 .form-group{
     padding-top: 0.5em;
+    margin: 1em;
+
 }
 
 .btn{
@@ -215,6 +231,38 @@ p{
 
 label, input[type='text'], input[type='email'], textarea{
     font-size: 1.2em !important;
+}
+
+/*-- news --*/
+
+.news{
+    margin: 2em 22em 2em 22em;
+    padding: 2em;
+    background-color: rgb(2, 113, 72);
+    border: 2px solid black;
+}
+
+.subtitle{
+    text-align: center;
+    font-size: 1.4em;
+    color: white;
+}
+
+p.news-text{
+    text-align: center;
+    font-size: 1em;
+    color: white;
+}
+
+p.news-subtext{
+    font-size: 0.8em;
+    color: white;
+    font-style: italic;
+}
+
+hr{
+    color:white;
+    border-width: 5px;
 }
 
 @media only screen and (max-width:768px) {

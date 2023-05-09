@@ -124,5 +124,5 @@ def execute_external_script(sql_script_path, db_path):
 
 if __name__ == "__main__":
     sql_path = 'data/create_db.sql'
-    db_path = 'data/pasta_db.sqlite'
+    db_path = 'data/dance_db.sqlite'
     execute_external_script(sql_path,db_path)

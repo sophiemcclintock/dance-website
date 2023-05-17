@@ -15,37 +15,24 @@ or special one off classes we will be running and everything in between! </p>
 
 <div class="news rounded">
     <div class="text-end">
-        <a class="btn btn-primary">Add More</a>
+        <a class="btn btn-primary" href="{{ url_for('news_cud', id=0, task='add') }}">Add More</a>
     </div>
 </div>
 
+{% for row in news %}
 <div class="news news-fluid rounded">
-    <h4><b>HIP HOP UNITE COMPETITION</b></h4>
+    <h4><b>{{row ['title']}}</b></h4>
     <hr>
-    <div class="subtitle">From Friday 9th to Saturday 10th of June</div>
-    <p class="news-text">Our hip hop dance crew are competing in this very high level competition, and we are all very excited.
-        It would be awesome if as many people as possible could come and cheer us on! </p>
+    <div class="subtitle">{{row ['subtitle']}}</div>
+    <p class="news-text">{{row ['content'] | replace("\n", "<br>") | safe}}</p>
     <div class="row">
-    <div class="col-lg-6"><p class="news-subtext text-start">Posted by Sophie<br>At 9:35pm on Tuesday the 2nd of May</p></div>
+    <div class="col-lg-6"><p class="news-subtext text-start">Posted by {{ row ['name']}} on {{ row ['newsdate'] | news_date}}</p></div>
     <div class="col-lg-6 text-end">
-        <a class="btn btn-primary">Update</a>
-        <a class="btn btn-primary">Delete</a>
+        <a class="btn btn-primary" href="">Update</a>
+        <a class="btn btn-primary" href="">Delete</a>
     </div>
     </div>
 </div>
-<div class="news rounded">
-    <h4><b>DANCE CLASS WITH KEZIA SHEPHERD</b></h4>
-    <hr>
-    <div class="subtitle">On the 10th of August</div>
-    <p class="news-text">Kezia is an ex-Riptide dancer who has gone on to university in Christchurch but she still loves to teach
-        whenever she can. Her classes are ballet and she does beginner, intermediate and advanced lessons. At 2pm will be the beginners
-        lesson, the intermediate lesson will be at 3pm and the advanced lesson at 4pm. Please come along! </p>
-    <div class="row">
-    <div class="col-lg-6"><p class="news-subtext text-start">Posted by Sophie<br>At 9:35pm on Tuesday the 2nd of May</p></div>
-    <div class="col-lg-6 text-end">
-        <a class="btn btn-primary">Update</a>
-        <a class="btn btn-primary">Delete</a>
-    </div>
-    </div>
-</div>
+{% endfor %}
+
 {% endblock %}

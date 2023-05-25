@@ -12,7 +12,7 @@ static/images/molly_banner3.jpg
 <h1>ENTER/UPDATE YOUR NEWS ITEM</h1>
 <div class="container-lg">
   <div class="news p-4 my-4">
-  <form action="}" method="POST">
+  <form action="{{url_for('news_cud', id=id, task=task)}}" method="POST">
     <div class="">
       <label for="title" class="form-text">Title:</label>
       <input type="text" class="form-control" id="title" name="title" placeholder="" value="{{title}}" required>
@@ -26,7 +26,6 @@ static/images/molly_banner3.jpg
       <textarea class="form-control" id="content" name="content" rows="7" required>{{content}}</textarea>
     </div>
     <div class="text-end">
-      <button type="reset" class="btn btn-primary">Reset</button>
       <button type="submit" class="btn btn-primary">Submit</button>
     </div>
   </form>

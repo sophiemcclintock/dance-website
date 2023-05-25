@@ -142,6 +142,11 @@ h5{
     font-size: 1.15em;
 }
 
+.alert{
+    color: rgb(250,0,0);
+    font-size: 1.5em;
+}
+
 p{
     padding:0 4em 0 4em;
     margin:auto;

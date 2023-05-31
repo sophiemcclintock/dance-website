@@ -18,14 +18,40 @@ static/images/molly_banner3.jpg
             throughout the week to vary it up and we also offer private lessons for those keen to improve their skills
             in dance in general or specific styles. The cost for a year's worth of lessons is $50, as well as any extra
             competition costs and the cost for a private lesson is $10. To book a private lesson you can contact us using
-            our contact form. The usual timetable can be seen below.
-</p>
+            our contact form. The usual timetable can be seen below.</p>
     </div>
     <div class="col-lg-5">
         <img class="img-fluid rounded mx-auto d-block" src="static/images/lucy_molly.jpg" alt="">
     </div>
 </div>
+ </div>
+<hr>
+<div class="rounded">
+    <div class="text-center">
+        <a class="btn btn-primary" href="{{ url_for('classes_cud', id=0, task='add') }}">Add More</a>
     </div>
+</div>
+{% for row in classes %}
+<div class="container container-fluid">
+<div class="row">
+<div class="col-lg-7">
+    <h2 class="title-text">{{row['title']}}</h2>
+    <p class="classes-text">{{row['content']}}</p>
+    <br>
+    <div class="col-lg-6"><p class="classes-subtext text-start">Posted by {{row['name']}}</p></div>
+    <div class="text-end">
+        <a class="btn btn-primary" href="{{ url_for('classes_cud', id=row['classes_id'], task='update') }}">Update</a>
+        <a class="btn btn-primary" href="{{ url_for('classes_cud', id=row['classes_id'], task='delete') }}">Delete</a>
+    </div>
+</div>
+<div class="col-lg-5 order-xl-first">
+    <img class="img-fluid rounded mx-auto d-block" src="{{ url_for('static', filename='images/'+row['image']) }}" alt="">
+</div>
+</div>
+</div>
+<br>
+{% endfor %}
+
 <h1>TIMETABLE</h1>
 <div class="container container-fluid">
     <table class="table">

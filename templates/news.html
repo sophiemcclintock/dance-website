@@ -26,7 +26,7 @@ or special one off classes we will be running and everything in between! </p>
     <div class="subtitle">{{row['subtitle']}}</div>
     <p class="news-text">{{row['content'] | replace("\n", "<br>") | safe}}</p>
     <div class="row">
-    <div class="col-lg-6"><p class="news-subtext text-start">Posted by {{ row ['name']}} on {{ row ['newsdate'] | news_date}}</p></div>
+    <div class="col-lg-6"><p class="news-subtext text-start">Posted by {{ row ['name']}} on {{ row ['newsdate'] | news_date }}</p></div>
     <div class="col-lg-6 text-end">
         <a class="btn btn-primary" href="{{ url_for('news_cud', id=row['news_id'], task='update') }}">Update</a>
         <a class="btn btn-primary" href="{{ url_for('news_cud', id=row['news_id'], task='delete') }}">Delete</a>

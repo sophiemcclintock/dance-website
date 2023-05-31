@@ -25,7 +25,70 @@ def about():
 
 @app.route('/classes')
 def classes():
-    return render_template("classes.html")
+    # query for page
+    sql = """select classes.classes_id, classes.title, classes.content, classes.image, member.name
+        from classes
+        join member on classes.member_id= member.member_id;
+        """
+    result = run_search_query_tuples(sql, (), db_path, True)
+    print(result)
+    return render_template("classes.html", classes=result)
+
+
+@app.route('/classes_cud', methods =['GET', 'POST'])
+def classes_cud():
+    # collect data from the web address
+    data = request.args
+    required_keys = ['id','task']
+    for k in required_keys:
+        if k not in data.keys():
+            message = "Do not know what to do with create read update on news (key not present)"
+            return render_template('error.html', message=message)
+    # have an id and a task key
+    if request.method == "GET":
+        if data['task'] == 'delete':
+            sql = "delete from classes where classes_id = ?"
+            values_tuple = (data['id'],)
+            result = run_commit_query(sql, values_tuple, db_path)
+            return redirect(url_for('classes'))
+        elif data['task'] == 'update':
+            sql = """ select title, content from classes where classes_id=? """
+            values_tuple = (data['id'])
+            result = run_search_query_tuples(sql, values_tuple, db_path, True)
+            result = result[0]
+            return render_template("classes_cud.html",
+                                   **result,
+                                   id=data['id'],
+                                   task=data['task'])
+        elif data['task'] == 'add':
+            temp = {'title':'Test Title', 'content':'Test Content'}
+            return render_template("classes_cud.html", id=0, task=data['task'],
+                                   **temp)
+        else:
+            message = "Unrecognised task coming from classes page"
+            return render_template('error.html', message=message)
+    elif request.method == "POST":
+        # collected the information from the form
+        f = request.form
+        print(f)
+        if data['task'] == 'add':
+            # add the classes entry to the database
+            # member is fixed for now
+            sql = """insert into classes(title, content, member_id, image)
+                        values(?,?,2,?)"""
+            values_tuple = (f['title'], f['content'], 'lucy_molly.jpg')
+            result = run_commit_query(sql, values_tuple, db_path)
+            return redirect(url_for('classes'))
+        elif data['task'] == 'update':
+            sql = """update classes set title=?, content=? where classes_id=?"""
+            values_tuple = (f['title'], f['content'], data['id'])
+            result = run_commit_query(sql, values_tuple, db_path)
+            # collect the data from the form and update the database at the sent id
+            return redirect(url_for('classes'))
+        else:
+            message = "Unrecognised task coming from classes page"
+            return render_template('error.html', message=message)
+    return render_template("classes_cud.html")
 
 
 @app.route('/news')

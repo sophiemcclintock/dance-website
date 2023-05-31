@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block title%}
+Classes
+{% endblock %}
+
+{% block banner %}
+static/images/molly_banner3.jpg
+{% endblock %}
+
+{% block content %}
+<h1>ENTER/UPDATE YOUR CLASSES ITEM</h1>
+<div class="container-lg">
+  <div class="news p-4 my-4">
+  <form action="{{url_for('classes_cud', id=id, task=task)}}" method="POST">
+    <div class="">
+      <label for="title" class="form-text">Title:</label>
+      <input type="text" class="form-control" id="title" name="title" placeholder="" value="{{title}}" required>
+    </div>
+    <div class="my-2">
+      <label for="content" class="form-text">Content:</label>
+      <textarea class="form-control" id="content" name="content" rows="7" required>{{content}}</textarea>
+    </div>
+    <div class="text-end">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+  </div>
+</div>
+{% endblock %}

@@ -122,6 +122,12 @@ h2{
     scroll-margin-top: 1em;
 }
 
+h2.title-text{
+    color: black;
+    padding: 0.5em;
+    margin: auto;
+}
+
 h3{
     text-align: center;
     margin:auto;
@@ -167,6 +173,12 @@ p.competition-text{
     font-size: 1.2em;
     color: white;
     padding: 1em;
+}
+
+p.classes-subtext{
+    font-size: 0.8em;
+    color: color;
+    font-style: italic;
 }
 
 .column-text {

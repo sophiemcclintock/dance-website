@@ -1,8 +1,9 @@
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for, session
 from db_functions import run_search_query_tuples, run_commit_query
 from datetime import datetime
 
 app = Flask(__name__)
+app.secret_key = "heyhowyadoing"
 db_path = 'data/dance_db.sqlite'
 
 
@@ -122,9 +123,42 @@ def enrol():
         return render_template("enrol.html", **temp_form_data)
 
 
-@app.route('/log_in')
-def log_in():
-    return render_template("log_in.html")
+@app.route('/login', methods=["GET", "POST"])
+def login():
+    print(session)
+    error = "Your credentials are not recognised"
+    if request.method == "GET":
+        return render_template("login.html", email='sophiecatemcclintock@gmail.com', password="temp")
+    elif request.method == "POST":
+        f = request.form
+        sql = """ select name, password, authorisation from member where email = ? """
+        values_tuple = (f['email'],)
+        result = run_search_query_tuples(sql, values_tuple, db_path, True)
+        if result:
+            # collect the result
+            result = result[0]
+            # check if the password is equal to what is in the database
+            if result['password'] == f['password']:
+                # start the session
+                session['name']=result['name']
+                session['authorisation'] = result['authorisation']
+                print(session)
+                # return to the main page
+                return redirect(url_for('index'))
+            else:
+                # return the page with an error message
+                return render_template("login.html", email='sophiecatemcclintock@gmail.com', password="temp", error=error)
+
+        else:
+            # return the page with an error message
+            return render_template("login.html", email='sophiecatemcclintock@gmail.com', password="temp", error=error)
+
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('index'))
+
 
 
 @app.route('/news_cud', methods =['GET', 'POST'])

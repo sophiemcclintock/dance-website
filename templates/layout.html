@@ -41,17 +41,26 @@
           <a class="nav-link" href="{{url_for('enrol')}}">Enrol</a>
         </li>
       </ul>
-    <div class="ms-auto"><a class="nav-link btn btn-outline" href="{{url_for('log_in')}}">Log in</a></div>
+    <div class="ms-auto">
+        {% if session %}
+        <a class="nav-link btn btn-outline" href="{{url_for('logout')}}">Log out</a>
+        {% else %}
+        <a class="nav-link btn btn-outline" href="{{url_for('login')}}">Log in</a>
+        {% endif %}
+    </div>
   </div>
 </div>
     </nav>
+
 
 <div class="img-container">
 <img class="img-fluid" src="{%block banner %}{% endblock %}" alt="">
 <div class="banner">RIPTIDE</div>
 <div class="banner-quote">{%block quote %}{% endblock %}</div>
 </div>
-
+{% if session %}
+<div class="session"> {{ session['name'] }} is logged in and their authorisation is {{ session['authorisation'] }}</div>
+{% endif %}
 
 {% block content %}
 

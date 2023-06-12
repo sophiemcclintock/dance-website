@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block title%}
+Log In
+{% endblock %}
+
+{% block banner %}
+static/images/molly_banner3.jpg
+{% endblock %}
+
+{% block content %}
+<h1>LOG IN</h1>
+<div class="container container-fluid login">
+<div class="alert">{{error}}</div>
+<form action="{{ url_for('login') }}" method="POST">
+    <div class="">
+        <label for="email" class="form-label">Please enter your email:</label>
+        <input type="email" class="form-control" id="email" name="email" placeholder="" value="{{email}}" required>
+    </div>
+    <div class="">
+        <label for="password" class="form-label">Please enter your password:</label>
+        <input type="password" class="form-control" id="password" name="password" placeholder="" value="{{password}}" required>
+    </div>
+    <div class="text-end">
+        <button type="reset" class="btn btn-primary">Reset</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+
+    </div>
+</form>
+    </div>
+{% endblock %}

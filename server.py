@@ -105,62 +105,6 @@ def news():
     return render_template("news.html", news=result)
 
 
-@app.route('/enrol', methods=["GET", "POST"])
-def enrol():
-    if request.method == "POST":
-        f = request.form
-        print(f)
-        return render_template("confirm.html", form_data=f)
-
-    elif request.method == "GET":
-        temp_form_data={
-            "firstname" : "James",
-            "secondname" : "Harvey",
-            "age" : "14",
-            "email" : "jh@gmail.com",
-            "typeofdance" : "I am interested in jazz and contemporary"
-        }
-        return render_template("enrol.html", **temp_form_data)
-
-
-@app.route('/login', methods=["GET", "POST"])
-def login():
-    print(session)
-    error = "Your credentials are not recognised"
-    if request.method == "GET":
-        return render_template("login.html", email='sophiecatemcclintock@gmail.com', password="temp")
-    elif request.method == "POST":
-        f = request.form
-        sql = """ select member_id, name, password, authorisation from member where email = ? """
-        values_tuple = (f['email'],)
-        result = run_search_query_tuples(sql, values_tuple, db_path, True)
-        if result:
-            # collect the result
-            result = result[0]
-            # check if the password is equal to what is in the database
-            if result['password'] == f['password']:
-                # start the session
-                session['name'] = result['name']
-                session['authorisation'] = result['authorisation']
-                session['member_id'] = result['member_id']
-                print(session)
-                # return to the main page
-                return redirect(url_for('index'))
-            else:
-                # return the page with an error message
-                return render_template("login.html", email='sophiecatemcclintock@gmail.com', password="temp", error=error)
-
-        else:
-            # return the page with an error message
-            return render_template("login.html", email='sophiecatemcclintock@gmail.com', password="temp", error=error)
-
-
-@app.route('/logout')
-def logout():
-    session.clear()
-    return redirect(url_for('index'))
-
-
 @app.route('/news_cud', methods =['GET', 'POST'])
 def news_cud():
     # collect data from the web address
@@ -213,6 +157,68 @@ def news_cud():
             # collect the data from the form and update the database at the sent id
             return redirect(url_for('news'))
     return render_template("news_cud.html")
+
+
+@app.route('/enrol', methods=["GET", "POST"])
+def enrol():
+    if request.method == "POST":
+        f = request.form
+        print(f)
+        return render_template("confirm.html", form_data=f)
+
+    elif request.method == "GET":
+        temp_form_data={
+            "firstname" : "James",
+            "lastname" : "Harvey",
+            "age" : "14",
+            "email" : "jh@gmail.com",
+            "phonenumber" : "+64 21 4565 8464",
+            "typeofdance" : "I am interested in jazz and contemporary"
+        }
+        return render_template("enrol.html", **temp_form_data)
+
+
+@app.route('/members')
+def members():
+    return render_template("members.html")
+
+@app.route('/login', methods=["GET", "POST"])
+def login():
+    print(session)
+    error = "Your credentials are not recognised"
+    if request.method == "GET":
+        return render_template("login.html", email='sophiecatemcclintock@gmail.com', password="temp")
+    elif request.method == "POST":
+        f = request.form
+        sql = """ select member_id, name, password, authorisation from member where email = ? """
+        values_tuple = (f['email'],)
+        result = run_search_query_tuples(sql, values_tuple, db_path, True)
+        if result:
+            # collect the result
+            result = result[0]
+            # check if the password is equal to what is in the database
+            if result['password'] == f['password']:
+                # start the session
+                session['name'] = result['name']
+                session['authorisation'] = result['authorisation']
+                session['member_id'] = result['member_id']
+                print(session)
+                # return to the main page
+                return redirect(url_for('index'))
+            else:
+                # return the page with an error message
+                return render_template("login.html", email='sophiecatemcclintock@gmail.com', password="temp", error=error)
+
+        else:
+            # return the page with an error message
+            return render_template("login.html", email='sophiecatemcclintock@gmail.com', password="temp", error=error)
+
+
+@app.route('/logout')
+def logout():
+    session.clear()
+    return redirect(url_for('index'))
+
 
 
 

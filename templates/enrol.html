@@ -18,20 +18,47 @@ static/images/molly_banner3.jpg
         <input type="text" class="form-control" id="firstname" name="firstname" placeholder="" value="{{firstname}}" required>
     </div>
     <div class="form-group">
-        <label for="secondname" class="form-label">Second Name:</label>
-        <input type="text" class="form-control" id="secondname" name="secondname" placeholder="" value="{{secondname}}" required>
+        <label for="lastname" class="form-label">Last Name:</label>
+        <input type="text" class="form-control" id="lastname" name="lastname" placeholder="" value="{{lastname}}" required>
     </div>
     <div class="form-group">
-        <label for="age" class="form-label">Age:</label>
-        <input type="text" class="form-control" id="age" name="age" placeholder="" value="{{age}}" required>
+        <label for="birthday" class="form-label">Dancers Birthday:</label>
+        <input type="date" class="form-control" id="birthday" name="birthday" placeholder="" value="{{birthday}}" required>
+    </div>
+    <div class="form-group">
+        <label for="year" class="form-label">Dancers School Year:</label>
+            <select id="year" class="form-select" name=typesofdance" aria-label="Default select example" required>
+                <option selected>Select your choice</option>
+                <option id="y7">Year 7</option>
+                <option id="y8">Year 8</option>
+                <option id="y9">Year 9</option>
+                <option id="y10">Year 10</option>
+                <option id="y11">Year 11</option>
+                <option id="y12">Year 12</option>
+                <option id="y13">Year 13</option>
+            </select>
     </div>
     <div class="form-group">
         <label for="email" class="form-label">Email:</label>
         <input type="email" class="form-control" id="email" name="email" placeholder="" value="{{email}}" required>
     </div>
     <div class="form-group">
-        <label for="typesofdance" class="form-label">What type of dance would you be interested in?</label>
-        <textarea id="typesofdance" class="form-control" name="typeofdance" rows="7">{{typeofdance}}</textarea>
+        <label for="phonenumber" class="form-label">Phone Number:</label>
+        <input type="text" class="form-control" id="phonenumber" name="phonenumber" placeholder="" value="{{phonenumber}}" required>
+    </div>
+    <div class="form-group">
+        <label for="typesofdance" class="form-label" required>What type of dance would you be interested in?</label>
+            <select id="typesofdance" class="form-select" name=typesofdance" aria-label="Default select example">
+                  <option selected>Select your choice</option>
+                  <option id="Jazz">Jazz</option>
+                  <option id="Contemporary">Contemporary</option>
+                  <option id="Hip Hop">Hip Hop</option>
+                  <option id="Tap">Tap</option>
+            </select>
+    </div>
+    <div class="form-group">
+        <label for="comment" class="form-label">Is there anything else you would like to tell us?</label>
+        <textarea type="text" class="form-control" id="comment" name="comment" rows="5" id="comment">{{comment}}</textarea>
     </div>
 
 

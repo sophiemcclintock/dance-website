@@ -1,6 +1,7 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>{% block title %}{% endblock %}</title>
+    <title>Testing</title>
     <meta charset="utf-8">
     <meta name="viewpoint" content="width=device-width inital-scale=1">
      <!-- Latest compiled and minified CSS -->
@@ -11,52 +12,6 @@
     <link rel="stylesheet" href="static/styles.css">
 </head>
 <body>
-<nav class="navbar navbar-expand-sm px-lg-5" >
-  <div class="container-fluid">
-    <a class="navbar-brand" href="{{ url_for('index') }}">Home</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="mynavbar">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link" href = "{{ url_for('draw') }}"> Draw</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href = "{{ url_for('results') }}"> Results</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('addgame') }}">Add games</a>
-        </li>
-       <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            My Hot Shots
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="{{ url_for('member') }}">Members</a></li>
-            <li><a class="dropdown-item" href="{{ url_for('classes') }}">Training Classes</a></li>
-            <li><a class="dropdown-item" href="{{ url_for('registration') }}">Registration</a></li>
-          </ul>
-        </li>
-      </ul>
-      <div class="d-flex nav-item">
-          <ul class="navbar-nav me-auto">
-                <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle btn btn-info" href="#" id="navbarDropdownMenuEnd" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Admin
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuEnd">
-            <li><a class="dropdown-item" href="#">Log-in</a></li>
-            <li><a class="dropdown-item" href="#">Log-out</a></li>
-            <li><a class="dropdown-item" href="#">Sign-up</a></li>
-          </ul>
-        </li>
-              </ul>
-      </div>
-    </div>
-  </div>
-</nav>
-
 <nav id="Home" class="navbar navbar-expand-sm fixed-top">
   <div class="container-fluid">
 
@@ -85,37 +40,32 @@
           <a class="nav-link" href="{{url_for('enrol')}}">Enrol</a>
         </li>
       </ul>
-
- <div class="d-flex nav-item ms-auto">
-        <ul class="navbar-nav ms-auto">
-        {% if session %}
-        <li class="nav-item dropdown">
-        <a class="nav-link btn btn-outline dropdown-toggle" href="{{url_for('logout')}}" id="navbarDropdownMenuEnd" role="button" data-bs-toggle="dropdown" aria-expanded="false">{{ session['name'] }}</a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuEnd">
-            <li><a class="dropdown-item" href="{{url_for('logout')}}#">Logout</a></li>
-          </ul>
-          </li>
-        {% else %}
+<div class="ms-auto">
         <a class="nav-link btn btn-outline" href="{{url_for('login')}}">Log in</a>
-        {% endif %}
-        </ul>
     </div>
-
-      <div class="ms-auto">
-        {% if session %}
-        <a class="nav-link btn btn-outline dropdown-toggle" href="{{url_for('logout')}}" id="navbarDropdownMenuEnd" role="button" data-bs-toggle="dropdown">{{ session['name'] }}</a>
-          <ul class="dropdown-menu" >
-            <li><a class="dropdown-item" href="{{url_for('logout')}}#">Logout</a></li>
-          </ul>
-        {% else %}
-        <a class="nav-link btn btn-outline" href="{{url_for('login')}}">Log in</a>
-        {% endif %}
-    </div>
-
 
 
   </div>
 </div>
     </nav>
+{% block content %}
+<br>
+{% end block %}
+ <div class="dropdown">
+  <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+    Dropdown button
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="#">Link 1</a></li>
+    <li><a class="dropdown-item" href="#">Link 2</a></li>
+    <li><a class="dropdown-item" href="#">Link 3</a></li>
+  </ul>
+</div>
+
+<footer class="footer-content">
+    <img class="footer-image" src="static/images/Riptide-1.png">
+    <div>&copy; 2019</div>
+    </footer>
+
 </body>
 </html>

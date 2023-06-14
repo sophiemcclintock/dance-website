@@ -41,6 +41,9 @@ body{
     background-color: rgb(67,124,144);
 
 }
+.form-group{
+    font-size: 0.9em;
+}
 
 .background{
     background-color: rgb(58,58,58);

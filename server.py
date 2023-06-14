@@ -131,7 +131,7 @@ def login():
         return render_template("login.html", email='sophiecatemcclintock@gmail.com', password="temp")
     elif request.method == "POST":
         f = request.form
-        sql = """ select name, password, authorisation from member where email = ? """
+        sql = """ select member_id, name, password, authorisation from member where email = ? """
         values_tuple = (f['email'],)
         result = run_search_query_tuples(sql, values_tuple, db_path, True)
         if result:
@@ -140,8 +140,9 @@ def login():
             # check if the password is equal to what is in the database
             if result['password'] == f['password']:
                 # start the session
-                session['name']=result['name']
+                session['name'] = result['name']
                 session['authorisation'] = result['authorisation']
+                session['member_id'] = result['member_id']
                 print(session)
                 # return to the main page
                 return redirect(url_for('index'))
@@ -158,7 +159,6 @@ def login():
 def logout():
     session.clear()
     return redirect(url_for('index'))
-
 
 
 @app.route('/news_cud', methods =['GET', 'POST'])
@@ -201,8 +201,9 @@ def news_cud():
             # add the news news entry to the database
             # member is fixed for now
             sql = """insert into news(title, subtitle, content, newsdate, member_id)
-                        values(?,?,?, datetime('now', 'localtime'),2)"""
-            values_tuple = (f['title'], f['subtitle'], f['content'])
+                        values(?,?,?, datetime('now', 'localtime'),?)"""
+            # add some more validation around if the member_id is there or not
+            values_tuple = (f['title'], f['subtitle'], f['content'], session['member_id'])
             result = run_commit_query(sql, values_tuple, db_path)
             return redirect(url_for('news'))
         elif data['task'] == 'update':

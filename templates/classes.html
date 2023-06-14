@@ -26,11 +26,13 @@ static/images/molly_banner3.jpg
 </div>
  </div>
 <hr>
+{% if session and session['authorisation'] == 0 %}
 <div class="rounded">
     <div class="text-center">
         <a class="btn btn-primary" href="{{ url_for('classes_cud', id=0, task='add') }}">Add More</a>
     </div>
 </div>
+{% endif %}
 {% for row in classes %}
 <div class="container container-fluid">
 <div class="row">
@@ -39,10 +41,12 @@ static/images/molly_banner3.jpg
     <p class="classes-text">{{row['content']}}</p>
     <br>
     <div class="col-lg-6"><p class="classes-subtext text-start">Posted by {{row['name']}}</p></div>
+    {% if session and session['authorisation'] == 0 %}
     <div class="text-end">
         <a class="btn btn-primary" href="{{ url_for('classes_cud', id=row['classes_id'], task='update') }}">Update</a>
         <a class="btn btn-primary" href="{{ url_for('classes_cud', id=row['classes_id'], task='delete') }}">Delete</a>
     </div>
+    {% endif %}
 </div>
 <div class="col-lg-5 order-xl-first">
     <img class="img-fluid rounded mx-auto d-block" src="{{ url_for('static', filename='images/'+row['image']) }}" alt="">

@@ -27,7 +27,7 @@ def about():
 @app.route('/classes')
 def classes():
     # query for page
-    sql = """select classes.classes_id, classes.title, classes.content, classes.image, member.name
+    sql = """select classes.classes_id, classes.classes_title, classes.content, classes.image, member.name
         from classes
         join member on classes.member_id= member.member_id;
         """
@@ -53,7 +53,7 @@ def classes_cud():
             result = run_commit_query(sql, values_tuple, db_path)
             return redirect(url_for('classes'))
         elif data['task'] == 'update':
-            sql = """ select title, content from classes where classes_id=? """
+            sql = """ select classes_title, content from classes where classes_id=? """
             values_tuple = (data['id'])
             result = run_search_query_tuples(sql, values_tuple, db_path, True)
             result = result[0]
@@ -62,7 +62,7 @@ def classes_cud():
                                    id=data['id'],
                                    task=data['task'])
         elif data['task'] == 'add':
-            temp = {'title':'Test Title', 'content':'Test Content'}
+            temp = {'classes_title':'Test Title', 'content':'Test Content'}
             return render_template("classes_cud.html", id=0, task=data['task'],
                                    **temp)
         else:
@@ -75,14 +75,14 @@ def classes_cud():
         if data['task'] == 'add':
             # add the classes entry to the database
             # member is fixed for now
-            sql = """insert into classes(title, content, member_id, image)
-                        values(?,?,2,?)"""
-            values_tuple = (f['title'], f['content'], 'lucy_molly.jpg')
+            sql = """insert into classes(classes_title, content, member_id, image)
+                        values(?,?,?,?)"""
+            values_tuple = (f['classes_title'], f['content'], session['member_id'], 'lucy_molly.jpg')
             result = run_commit_query(sql, values_tuple, db_path)
             return redirect(url_for('classes'))
         elif data['task'] == 'update':
-            sql = """update classes set title=?, content=? where classes_id=?"""
-            values_tuple = (f['title'], f['content'], data['id'])
+            sql = """update classes set classes_title=?, content=? where classes_id=?"""
+            values_tuple = (f['classes_title'], f['content'], data['id'])
             result = run_commit_query(sql, values_tuple, db_path)
             # collect the data from the form and update the database at the sent id
             return redirect(url_for('classes'))
@@ -163,24 +163,39 @@ def news_cud():
 def enrol():
     if request.method == "POST":
         f = request.form
-        print(f)
+        sql = """insert into member(name,email, )"""
         return render_template("confirm.html", form_data=f)
-
     elif request.method == "GET":
         temp_form_data={
-            "firstname" : "James",
-            "lastname" : "Harvey",
-            "age" : "14",
-            "email" : "jh@gmail.com",
-            "phonenumber" : "+64 21 4565 8464",
-            "typeofdance" : "I am interested in jazz and contemporary"
+            "firstname": "James",
+            "lastname": "Harvey",
+            "age": "14",
+            "email": "jh@gmail.com",
+            "phonenumber": "+64 21 4565 8464",
+            "comment": "No"
         }
         return render_template("enrol.html", **temp_form_data)
 
 
 @app.route('/members')
 def members():
-    return render_template("members.html")
+    data = request.args
+    sql = """ select member_id, name, email, authorisation from member"""
+    result = run_search_query_tuples(sql, (), db_path, True)
+    return render_template("members.html", members=result)
+
+
+@app.route('/registration')
+def registration():
+    data = request.args
+    sql = """select  m.member_id, m.name, m.email 
+     from member m
+     join registration r on m.member_id = r.member_id
+     where r.classes_id = ?"""
+    values_tuple = (data['id'],)
+    result = run_search_query_tuples(sql, values_tuple, db_path, True)
+    return render_template("registration.html", registrations=result)
+
 
 @app.route('/login', methods=["GET", "POST"])
 def login():
@@ -220,6 +235,9 @@ def logout():
     return redirect(url_for('index'))
 
 
+@app.route('/confirm')
+def confirm():
+    return render_template("confirm.html")
 
 
 if __name__ == "__main__":

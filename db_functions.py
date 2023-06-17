@@ -126,3 +126,18 @@ if __name__ == "__main__":
     sql_path = 'data/create_db.sql'
     db_path = 'data/dance_db.sqlite'
     execute_external_script(sql_path,db_path)
+    csv_path = 'data/members_table.csv'
+    csv_data = file_reader(csv_path)
+    csv_data.pop(0)
+    for row in csv_data:
+        sql = """insert into member(name, email, password, authorisation)
+        values(?,?,?,?)"""
+        values_tuple=(row[0], row[2], row[3], row[4])
+        result = run_commit_query(sql, values_tuple, db_path)
+    for row in csv_data:
+        sql = """insert into registration(member_id, classes_id) 
+        values( (select member_id from member where name = ?), 
+        (select classes_id from classes where classes_title = ?))"""
+        values_tuple = (row[0], row[1])
+        result = run_commit_query(sql, values_tuple, db_path)
+

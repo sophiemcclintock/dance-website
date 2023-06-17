@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
-{% block title%}
-Members
+{% block title %}
+Registration Page
 {% endblock %}
 
 {% block banner %}
@@ -9,9 +9,8 @@ static/images/molly_banner3.jpg
 {% endblock %}
 
 {% block content %}
-<h1>Members Page</h1>
-
-<div class="container-fluid">
+<h1>Registration Page</h1>
+    <div class="container-fluid">
 <table class="table">
     <thead>
       <tr>
@@ -20,13 +19,16 @@ static/images/molly_banner3.jpg
       </tr>
     </thead>
     <tbody>
-    {% for row in members %}
+    {% for row in registrations %}
       <tr>
         <td>{{ row['name'] }} </td>
         <td>{{ row['email'] }}</td>
+        <td><a class="btn btn-primary" href="">Delete</a></td>
       </tr>
     {% endfor %}
     </tbody>
   </table>
 </div>
+
+
 {% endblock %}

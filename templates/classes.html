@@ -44,7 +44,7 @@ static/images/molly_banner3.jpg
     <div class=""><p class="classes-subtext {{ loop.cycle('text-start', 'text-end') }}">Posted by {{row['name']}}</p></div>
     {% if session and session['authorisation'] == 0 %}
     <div class="{{ loop.cycle('text-end', 'text-start') }}">
-        <a class="btn btn-primary" href="{{ url_for('registration', id=row['classes_id']) }}">View Registrations</a>
+        <a class="btn btn-primary" href="{{ url_for('registration', classes_id=row['classes_id']) }}">View Registrations</a>
         <a class="btn btn-primary" href="{{ url_for('classes_cud', id=row['classes_id'], task='update') }}">Update</a>
         <a class="btn btn-primary" href="{{ url_for('classes_cud', id=row['classes_id'], task='delete') }}">Delete</a>
     </div>

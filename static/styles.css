@@ -184,6 +184,10 @@ p.classes-subtext{
     font-style: italic;
 }
 
+.add_class{
+    color: white;
+}
+
 .column-text {
     background-color: rgb(150, 93, 80);
 }

@@ -163,8 +163,9 @@ def news_cud():
 def enrol():
     if request.method == "POST":
         f = request.form
-        sql = """insert into member(name,email, )"""
+        print(f)
         return render_template("confirm.html", form_data=f)
+
     elif request.method == "GET":
         temp_form_data={
             "firstname": "James",
@@ -188,13 +189,29 @@ def members():
 @app.route('/registration')
 def registration():
     data = request.args
-    sql = """select  m.member_id, m.name, m.email 
+    print(data.keys())
+    if 'task' in data.keys():
+        if data['task'] == 'delete':
+            sql = """delete from registration where member_id = ? and classes_id = ?"""
+            values_tuple = (data['member_id'], data['classes_id'])
+            result = run_commit_query(sql, values_tuple, db_path)
+            print('delete')
+            print(result)
+        elif data['task'] == 'add':
+            if 'classes_id' in data.keys() and 'member_id' in data.keys():
+                sql = """insert into registration(member_id, classes_id)
+                            values(?,?)"""
+                values_tuple = (data['member_id'], data['classes_id'])
+                result = run_commit_query(sql, values_tuple, db_path)
+        else:
+            return render_template('error.html' , message="Registrations task not understood")
+    sql = """select  m.member_id, m.name, m.email
      from member m
      join registration r on m.member_id = r.member_id
      where r.classes_id = ?"""
-    values_tuple = (data['id'],)
+    values_tuple = (data['classes_id'],)
     result = run_search_query_tuples(sql, values_tuple, db_path, True)
-    return render_template("registration.html", registrations=result)
+    return render_template("registration.html", registration=result, classes_id=data['classes_id'])
 
 
 @app.route('/login', methods=["GET", "POST"])

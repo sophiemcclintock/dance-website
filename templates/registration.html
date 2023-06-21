@@ -16,18 +16,41 @@ static/images/molly_banner3.jpg
       <tr>
         <th>Name:</th>
         <th>Email:</th>
+          <th>Action</th>
       </tr>
     </thead>
     <tbody>
-    {% for row in registrations %}
+    {% for row in registration %}
       <tr>
         <td>{{ row['name'] }} </td>
         <td>{{ row['email'] }}</td>
-        <td><a class="btn btn-primary" href="">Delete</a></td>
+        <td><a class="btn btn-primary" href="{{ url_for('registration', classes_id = classes_id, member_id = row['member_id'], task='delete') }}">Remove</a></td>
       </tr>
     {% endfor %}
     </tbody>
   </table>
+
+<h1>Add To The Class</h1>
+
+<div class="container-fluid form-background">
+<form>
+    <div class="form-group text-center pt-3">
+  <label for="students" class="add_class form-label">Who would like to add to the class:</label>
+        <br>
+  <input list="students" name="student" id="student">
+  <datalist id="students">
+     {% for row in registration %}
+    <option value="{{ row['name'] }}">
+      {% endfor %}
+  </datalist>
+    </div>
+</form>
+    <div class="text-center pb-3">
+    <a class="btn btn-primary" href="{{ url_for('registration', classes_id = classes_id, member_id = member_id , task='add') }}">Add</a>
+    </div>
+</div>
+<br>
+
 </div>
 
 

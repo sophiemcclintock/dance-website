@@ -33,21 +33,22 @@ static/images/molly_banner3.jpg
 <h1>Add To The Class</h1>
 
 <div class="container-fluid form-background">
-<form>
+<form action="{{ url_for('registration', classes_id = classes_id, task='add') }}" method="POST">
     <div class="form-group text-center pt-3">
   <label for="students" class="add_class form-label">Who would like to add to the class:</label>
         <br>
   <input list="students" name="student" id="student">
   <datalist id="students">
-     {% for row in registration %}
+     {% for row in memberset %}
     <option value="{{ row['name'] }}">
       {% endfor %}
   </datalist>
     </div>
-</form>
     <div class="text-center pb-3">
-    <a class="btn btn-primary" href="{{ url_for('registration', classes_id = classes_id, member_id = member_id , task='add') }}">Add</a>
+    <button class="btn btn-primary" type="submit">Add</button>
     </div>
+</form>
+
 </div>
 <br>
 

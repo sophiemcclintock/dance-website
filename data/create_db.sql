@@ -4,12 +4,13 @@ drop table if exists news;
 drop table if exists member;
 drop table if exists classes;
 drop table if exists registration;
+drop table if exists contact;
 
 /* create table */
 
 create table member(
     member_id integer primary key autoincrement not null,
-    name text not null,
+    name text not null unique,
     email text not null unique,
     password text not null,
     authorisation integer not null
@@ -80,5 +81,16 @@ values ('DANCE CLASS WITH KEZIA SHEPHERD',
         datetime('now'),
         '1');
 
+create table contact(
+    contact_id integer primary key autoincrement not null,
+    contact_name text not null,
+    email text not null unique,
+    message not null,
+    newsdate integer not null
+);
 
-
+insert into contact(contact_name, email, message, newsdate)
+values ('Eva McClintock',
+        'evagracemcclintock@gmail.com',
+        'I would like to know what is the easiest class to start with for someone who has never danced before',
+        datetime('now'))

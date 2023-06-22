@@ -14,9 +14,22 @@ def news_date(sqlite_dt):
     return x.strftime("%a %d %b %y %I:%M %p")
 
 
-@app.route('/')
+@app.route('/', methods=["GET", "POST"])
 def index():
-    return render_template("index.html")
+    if request.method == "POST":
+        f = request.form
+        sql = """insert into contact(contact_name, email, message, newsdate)
+                                   values(?,?,?,datetime('now', 'localtime'))"""
+        values_tuple = (f['name'], f['email'], f['comment'],)
+        result = run_commit_query(sql, values_tuple, db_path)
+        return render_template("contact.html")
+    elif request.method == "GET":
+        temp_form_data = {
+            "name": "James Harvey",
+            "email": "jh@gmail.com",
+            "comment": "I want to book a private lesson"
+        }
+        return render_template("index.html", **temp_form_data)
 
 
 @app.route('/about')
@@ -165,7 +178,6 @@ def enrol():
         f = request.form
         print(f)
         return render_template("confirm.html", form_data=f)
-
     elif request.method == "GET":
         temp_form_data={
             "firstname": "James",
@@ -186,32 +198,50 @@ def members():
     return render_template("members.html", members=result)
 
 
-@app.route('/registration')
+@app.route('/contact')
+def contact():
+    return render_template("contact.html")
+
+
+@app.route('/registration', methods=["GET","POST"])
 def registration():
     data = request.args
     print(data.keys())
-    if 'task' in data.keys():
-        if data['task'] == 'delete':
-            sql = """delete from registration where member_id = ? and classes_id = ?"""
-            values_tuple = (data['member_id'], data['classes_id'])
-            result = run_commit_query(sql, values_tuple, db_path)
-            print('delete')
-            print(result)
-        elif data['task'] == 'add':
-            if 'classes_id' in data.keys() and 'member_id' in data.keys():
-                sql = """insert into registration(member_id, classes_id)
-                            values(?,?)"""
+    if request.method == "GET":
+        if 'task' in data.keys():
+            if data['task'] == 'delete':
+                sql = """delete from registration where member_id = ? and classes_id = ?"""
                 values_tuple = (data['member_id'], data['classes_id'])
                 result = run_commit_query(sql, values_tuple, db_path)
-        else:
-            return render_template('error.html' , message="Registrations task not understood")
-    sql = """select  m.member_id, m.name, m.email
-     from member m
-     join registration r on m.member_id = r.member_id
-     where r.classes_id = ?"""
-    values_tuple = (data['classes_id'],)
-    result = run_search_query_tuples(sql, values_tuple, db_path, True)
-    return render_template("registration.html", registration=result, classes_id=data['classes_id'])
+                print('delete')
+                print(result)
+            else:
+                return render_template('error.html' , message="Registrations task not understood")
+        sql = """select  m.member_id, m.name, m.email
+         from member m
+         join registration r on m.member_id = r.member_id
+         where r.classes_id = ?
+         order by m.name asc"""
+        values_tuple = (data['classes_id'],)
+        result = run_search_query_tuples(sql, values_tuple, db_path, True)
+        sql = """select  m.member_id, m.name, m.email
+         from member m
+         order by m.name asc
+         """
+        memberset = run_search_query_tuples(sql, (), db_path, True)
+        return render_template("registration.html", registration=result, memberset=memberset, classes_id=data['classes_id'])
+    elif request.method == "POST":
+        f = request.form
+        if data['task'] == 'add':
+            sql = """insert into registration(member_id, classes_id)
+            values((select member_id from member where name = ?), ?)"""
+            values_tuple = (f['student'], data['classes_id'])
+            result = run_commit_query(sql, values_tuple, db_path)
+            if result is False:
+                message = "Failed to add, most likely the member is already registered"
+                return render_template("error.html", message=message)
+            return redirect(url_for('registration', classes_id=data['classes_id']))
+        print(f)
 
 
 @app.route('/login', methods=["GET", "POST"])

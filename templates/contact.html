@@ -11,19 +11,14 @@ static/images/molly_banner3.jpg
 {% block content %}
 <h1>Contact Page</h1>
 
-    <div class="news news-fluid rounded">
-    <h4><b>Sophie McClintock</b></h4>
-    <hr>
-    <div class="subtitle">sophiecatemcclintock@gmail.com</div>
-    <p class="news-text">I would like to book a private lesson</p>
-</div>
-
 {% for row in contact %}
-    <div class="news news-fluid rounded">
+<div class="news news-fluid rounded">
     <h4><b>{{ row['contact_name'] }}</b></h4>
-    <hr>
     <div class="subtitle">{{ row['email'] }}</div>
-    <p class="news-text">{{ row['comment'] }}</p>
+    <hr>
+    <p class="news-text">{{ row['message'] }}</p>
 </div>
 {%  endfor %}
+
+
 {% endblock %}

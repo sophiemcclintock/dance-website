@@ -22,7 +22,7 @@ def index():
                                    values(?,?,?,datetime('now', 'localtime'))"""
         values_tuple = (f['name'], f['email'], f['comment'],)
         result = run_commit_query(sql, values_tuple, db_path)
-        return render_template("contact.html")
+        return render_template("index.html")
     elif request.method == "GET":
         temp_form_data = {
             "name": "James Harvey",
@@ -177,6 +177,7 @@ def enrol():
     if request.method == "POST":
         f = request.form
         print(f)
+        session['new_member'] = f
         return render_template("confirm.html", form_data=f)
     elif request.method == "GET":
         temp_form_data={
@@ -184,6 +185,7 @@ def enrol():
             "lastname": "Harvey",
             "age": "14",
             "email": "jh@gmail.com",
+            "birthday": "2006-09-05",
             "phonenumber": "+64 21 4565 8464",
             "comment": "No"
         }
@@ -200,7 +202,10 @@ def members():
 
 @app.route('/contact')
 def contact():
-    return render_template("contact.html")
+    data = request.args
+    sql = """select contact_name, email, message, newsdate from contact"""
+    result = run_search_query_tuples(sql, (), db_path, True)
+    return render_template("contact.html", contact=result)
 
 
 @app.route('/registration', methods=["GET","POST"])
@@ -282,9 +287,20 @@ def logout():
     return redirect(url_for('index'))
 
 
-@app.route('/confirm')
+@app.route('/confirm', methods=["GET", "POST"])
 def confirm():
-    return render_template("confirm.html")
+    if request.method == "GET":
+        return render_template("confirm.html")
+    elif request.method == "POST":
+        f = session['new_member']
+        # session['new_member'].clear()
+        name = f['firstname'] + " " + f['lastname']
+        sql = """insert into member(name, email, password, authorisation)
+            values(?, ?, ?, ?) """
+        values_tuple = (name, f['email'], 'temp', '1')
+        print(values_tuple)
+        result = run_commit_query(sql, values_tuple, db_path)
+        return redirect(url_for('index'))
 
 
 if __name__ == "__main__":

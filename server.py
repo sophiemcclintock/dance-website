@@ -30,6 +30,10 @@ def index():
             "comment": "I want to book a private lesson"
         }
         return render_template("index.html", **temp_form_data)
+    else:
+        # return the page with an error message
+        message = "Unrecognised command coming from classes page"
+        return render_template("error.html", message=message)
 
 
 @app.route('/about')
@@ -102,7 +106,10 @@ def classes_cud():
         else:
             message = "Unrecognised task coming from classes page"
             return render_template('error.html', message=message)
-    return render_template("classes_cud.html")
+    else:
+        # return the page with an error message
+        message = "Unrecognised command coming from classes page"
+        return render_template("error.html", message=message)
 
 
 @app.route('/news')
@@ -169,7 +176,14 @@ def news_cud():
             result = run_commit_query(sql, values_tuple, db_path)
             # collect the data from the form and update the database at the sent id
             return redirect(url_for('news'))
-    return render_template("news_cud.html")
+        else:
+            message = "Unrecognised task coming from news page"
+            return render_template('error.html', message=message)
+    else:
+        # return the page with an error message
+        message = "Unrecognised command coming from news page"
+        return render_template("error.html", message=message)
+
 
 
 @app.route('/enrol', methods=["GET", "POST"])
@@ -190,6 +204,10 @@ def enrol():
             "comment": "No"
         }
         return render_template("enrol.html", **temp_form_data)
+    else:
+        # return the page with an error message
+        message = "Unrecognised command coming from enrol page"
+        return render_template("error.html", message=message)
 
 
 @app.route('/members')
@@ -246,7 +264,13 @@ def registration():
                 message = "Failed to add, most likely the member is already registered"
                 return render_template("error.html", message=message)
             return redirect(url_for('registration', classes_id=data['classes_id']))
-        print(f)
+        else:
+            return render_template('error.html', message="Registrations task not understood")
+    else:
+        # return the page with an error message
+        message = "Unrecognised command coming from news page"
+        return render_template("error.html", message=message)
+
 
 
 @app.route('/login', methods=["GET", "POST"])
@@ -293,14 +317,18 @@ def confirm():
         return render_template("confirm.html")
     elif request.method == "POST":
         f = session['new_member']
-        # session['new_member'].clear()
         name = f['firstname'] + " " + f['lastname']
         sql = """insert into member(name, email, password, authorisation)
             values(?, ?, ?, ?) """
         values_tuple = (name, f['email'], 'temp', '1')
         print(values_tuple)
         result = run_commit_query(sql, values_tuple, db_path)
+        session['new_member'].clear()
         return redirect(url_for('index'))
+    else:
+        # return the page with an error message
+        message = "Unrecognised command coming from enrol page"
+        return render_template("error.html", message=message)
 
 
 if __name__ == "__main__":

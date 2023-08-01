@@ -12,12 +12,13 @@ static/images/molly_banner3.jpg
 <h1>Contact Page</h1>
 
 {% for row in contact %}
-<div class="news news-fluid rounded">
+<div class="container container-fluid form-background py-4 rounded">
     <h4><b>{{ row['contact_name'] }}</b></h4>
     <div class="subtitle">{{ row['email'] }}</div>
     <hr>
     <p class="news-text">{{ row['message'] }}</p>
 </div>
+    <br>
 {%  endfor %}
 
 

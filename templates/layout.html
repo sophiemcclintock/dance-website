@@ -54,7 +54,7 @@
       </ul>
 
 <div class="ms-auto">
-        {% if session %}
+        {% if session and session['authorisation'] == 0 or session['authorisation'] == 1 %}
         <a class="nav-link btn btn-outline" href="{{url_for('logout')}}#">Logout</a>
         {% else %}
         <a class="nav-link btn btn-outline" href="{{url_for('login')}}">Log in</a>
@@ -72,7 +72,7 @@
 <div class="banner">RIPTIDE</div>
 <div class="banner-quote">{%block quote %}{% endblock %}</div>
 </div>
-{% if session %}
+{% if session and session['authorisation'] == 0 or session['authorisation'] == 1 %}
 <div class="session"> {{ session['name'] }} is logged in, their authorisation is {{ session['authorisation'] }} and their member_id is {{ session['member_id'] }}</div>
 {% endif %}
 

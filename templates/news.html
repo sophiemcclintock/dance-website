@@ -12,22 +12,25 @@ static/images/molly_banner3.jpg
 <h1>NEWS</h1>
 <p>This page will give you live updates of everything that is happening at Riptide, whether it is competitions we are participating in,
 or special one off classes we will be running and everything in between! </p>
+    <br>
 {% if session and session['authorisation'] == 0 %}
 <div class="news rounded">
     <div class="text-end">
         <a class="btn btn-primary" href="{{ url_for('news_cud', id=0, task='add') }}">Add More</a>
     </div>
 </div>
+    <br>
 {% endif %}
 
 {% for row in news %}
-<div class="news news-fluid rounded">
+<div class="news rounded">
     <h4><b>{{row ['title']}}</b></h4>
     <hr>
     <div class="subtitle">{{row['subtitle']}}</div>
-    <p class="news-text">{{row['content'] | replace("\n", "<br>") | safe}}</p>
+    <div class="news-text">{{row['content'] | replace("\n", "<br>") | safe}}</div>
+<br>
     <div class="row">
-    <div class="col-lg-6"><p class="news-subtext text-start">Posted by {{ row ['name']}} on {{ row ['newsdate'] | news_date }}</p></div>
+    <div class="col-lg-6"><div class="news-subtext text-start">Posted by {{ row ['name']}} on {{ row ['newsdate'] | news_date }}</div></div>
     {% if session and session['authorisation'] == 0 %}
     <div class="col-lg-6 text-end">
         <a class="btn btn-primary" href="{{ url_for('news_cud', id=row['news_id'], task='update') }}">Update</a>
@@ -36,6 +39,7 @@ or special one off classes we will be running and everything in between! </p>
     {% endif %}
     </div>
 </div>
+    <br>
 {% endfor %}
 
 {% endblock %}

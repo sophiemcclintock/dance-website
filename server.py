@@ -272,11 +272,10 @@ def registration():
         return render_template("error.html", message=message)
 
 
-
 @app.route('/login', methods=["GET", "POST"])
 def login():
     print(session)
-    error = "Your credentials are not recognised"
+    error = "Your crewentials are not recognised"
     if request.method == "GET":
         return render_template("login.html", email='sophiecatemcclintock@gmail.com', password="temp")
     elif request.method == "POST":

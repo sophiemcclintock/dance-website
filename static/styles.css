@@ -38,7 +38,6 @@ body{
 /*--layout--*/
 
 .form-background{
-    /* -- background-color: rgb(67,124,144); --*/
     background-color: rgb(206, 170, 154)
 
 }
@@ -228,7 +227,7 @@ p.classes-subtext{
 }
 
 .btn:hover{
-    color: rgba(67,124,144,0.5);
+    color: rgba(206, 170, 154);
     background-color: white;
 }
 

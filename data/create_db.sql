@@ -85,8 +85,7 @@ create table contact(
     contact_id integer primary key autoincrement not null,
     contact_name text not null,
     email text not null unique,
-    message not null,
-    newsdate integer not null
+    message not null
 );
 
 insert into contact(contact_name, email, message, newsdate)

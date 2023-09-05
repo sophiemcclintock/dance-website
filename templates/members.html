@@ -26,6 +26,7 @@ static/images/molly_banner3.jpg
         <td>{{ row['name'] }} </td>
         <td>{{ row['email'] }}</td>
         <td>{{ row['authorisation'] }}</td>
+        <td><a class="btn btn-primary" href="{{ url_for('members', member_id = row['member_id'], task='delete') }}">Remove</a></td>
       </tr>
     {% endfor %}
     </tbody>

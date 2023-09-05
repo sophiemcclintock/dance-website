@@ -39,7 +39,7 @@
         <li class="nav-item">
           <a class="nav-link" href="{{url_for('enrol')}}">Enrol</a>
         </li>
-        {% if session %}
+        {% if session  and session['authorisation'] == 0 %}
         <li class="nav-item">
           <a class="nav-link" href="{{url_for('members')}}">Members</a>
         </li>
@@ -72,9 +72,7 @@
 <div class="banner">RIPTIDE</div>
 <div class="banner-quote">{%block quote %}{% endblock %}</div>
 </div>
-{% if session and session['authorisation'] == 0 or session['authorisation'] == 1 %}
-<div class="session"> {{ session['name'] }} is logged in, their authorisation is {{ session['authorisation'] }} and their member_id is {{ session['member_id'] }}</div>
-{% endif %}
+
 
 {% block content %}
 

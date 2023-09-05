@@ -88,8 +88,8 @@ create table contact(
     message not null
 );
 
-insert into contact(contact_name, email, message, newsdate)
+insert into contact(contact_name, email, message)
 values ('Eva McClintock',
-        'evagracemcclintock@gmaail.com',
-        'I would like to know what is the easiest class to start with for someone who has never danced before',
-        datetime('now'))
+        'evagracemcclintock@gmail.com',
+        'I would like to know what is the easiest class to start with for someone who has never danced before'
+        );

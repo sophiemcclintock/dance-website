@@ -18,9 +18,9 @@ def news_date(sqlite_dt):
 def index():
     if request.method == "POST":
         f = request.form
-        sql = """insert into contact(contact_name, email, message, newsdate)
-                                   values(?,?,?,datetime('now', 'localtime'))"""
-        values_tuple = (f['name'], f['email'], f['comment'],)
+        sql = """insert into contact(contact_name, email, message)
+                                   values(?,?,?)"""
+        values_tuple = (f['name'], f['email'], f['comment'])
         result = run_commit_query(sql, values_tuple, db_path)
         return render_template("index.html")
     elif request.method == "GET":
@@ -185,7 +185,6 @@ def news_cud():
         return render_template("error.html", message=message)
 
 
-
 @app.route('/enrol', methods=["GET", "POST"])
 def enrol():
     if request.method == "POST":
@@ -210,18 +209,39 @@ def enrol():
         return render_template("error.html", message=message)
 
 
-@app.route('/members')
+@app.route('/members', methods=["GET"])
 def members():
     data = request.args
-    sql = """ select member_id, name, email, authorisation from member"""
-    result = run_search_query_tuples(sql, (), db_path, True)
-    return render_template("members.html", members=result)
+    if request.method == "GET":
+        if 'task' in data.keys():
+            if data['task'] == 'delete':
+                sql = """delete from classes where member_id = ?"""
+                values_tuple = (data['member_id'],)
+                result = run_commit_query(sql, values_tuple, db_path)
+                sql = """delete from news where member_id = ?"""
+                values_tuple = (data['member_id'],)
+                result = run_commit_query(sql, values_tuple, db_path)
+                sql = """delete from registration where member_id = ?"""
+                values_tuple = (data['member_id'],)
+                result = run_commit_query(sql, values_tuple, db_path)
+                sql = """delete from member where member_id = ?"""
+                values_tuple = (data['member_id'],)
+                result = run_commit_query(sql, values_tuple, db_path)
+            else:
+                return render_template('error.html', message="Members task not understood")
+        sql = """ select member_id, name, email, authorisation from member"""
+        result = run_search_query_tuples(sql, (), db_path, True)
+        return render_template("members.html", members=result)
+    else:
+        # return the page with an error message
+        message = "Unrecognised command coming from news page"
+        return render_template("error.html", message=message)
 
 
 @app.route('/contact')
 def contact():
     data = request.args
-    sql = """select contact_name, email, message, newsdate from contact"""
+    sql = """select contact_name, email, message from contact"""
     result = run_search_query_tuples(sql, (), db_path, True)
     return render_template("contact.html", contact=result)
 

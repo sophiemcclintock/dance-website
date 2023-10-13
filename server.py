@@ -65,9 +65,13 @@ def classes_cud():
     # have an id and a task key
     if request.method == "GET":
         if data['task'] == 'delete':
-            sql = "delete from classes where classes_id = ?"
-            values_tuple = (data['id'],)
-            result = run_commit_query(sql, values_tuple, db_path)
+            if data['task'] == 'delete':
+                sql = """delete from classes where classes_id = ?"""
+                values_tuple = (data['id'],)
+                result = run_commit_query(sql, values_tuple, db_path)
+                sql = """delete from registration where classes_id = ?"""
+                values_tuple = (data['id'],)
+                result = run_commit_query(sql, values_tuple, db_path)
             return redirect(url_for('classes'))
         elif data['task'] == 'update':
             sql = """ select classes_title, content from classes where classes_id=? """
@@ -137,7 +141,7 @@ def news_cud():
     # have an id and a task key
     if request.method == "GET":
         if data['task'] == 'delete':
-            sql = "delete from news where news_id = ?"
+            sql = """delete from news where news_id = ?"""
             values_tuple = (data['id'],)
             result = run_commit_query(sql, values_tuple, db_path)
             return redirect(url_for('news'))

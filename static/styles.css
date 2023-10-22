@@ -177,6 +177,10 @@ p.competition-text{
     padding: 1em;
 }
 
+p.classes-text{
+    font-size: 1.3em;
+    }
+
 p.classes-subtext{
     font-size: 0.8em;
     color: color;
@@ -288,6 +292,16 @@ hr{
     border-width: 5px;
 }
 
+@media only screen and (max-width:1200px) {
+    p.classes-text {
+        font-size: 1em;
+    }
+
+    p.story-text{
+    font-size: 1em;
+}
+}
+
 @media only screen and (max-width:768px) {
     .banner {
         font-size: 4em;
@@ -317,6 +331,15 @@ hr{
     font-style: italic;
     padding: 1em 1em;
     color: rgb(255,255,255);
+    }
+
+    .img-change{
+        margin: 2em;
+    }
+
+    .news {
+        max-width: 90%;
+        translate: 5%;
     }
 
     }

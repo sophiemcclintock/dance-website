@@ -10,10 +10,10 @@ static/images/molly_banner3.jpg
 
 {% block content %}
 <h1>CLASSES</h1>
-<div class="container container-fluid">
+<div class="container-lg container-fluid">
 <div class="row">
     <div class="col-lg-7">
-        <p>We provide a range of different classes, from tap on a Monday to hip hop on a Friday, as our policy is that
+        <p class="classes-text">We provide a range of different classes, from tap on a Monday to hip hop on a Friday, as our policy is that
             everyone can dance, you just have to find the right style. We have ex-Riptide dancer Eva to come and teach
             throughout the week to vary it up and we also offer private lessons for those keen to improve their skills
             in dance in general or specific styles. The cost for a year's worth of lessons is $50, as well as any extra
@@ -21,7 +21,7 @@ static/images/molly_banner3.jpg
             our contact form. <a href="{{url_for('enrol')}}" class="stretched link">For a class please register here!</a></p>
     </div>
     <div class="col-lg-5">
-        <img class="img-fluid rounded mx-auto d-block" src="static/images/lucy_molly.jpg" alt="">
+        <img class="img-fluid rounded mx-auto d-block" src="static/images/lucy_molly.jpg" alt="A photo of two girls smiling at the camera">
     </div>
 </div>
  </div>
@@ -35,7 +35,7 @@ static/images/molly_banner3.jpg
 {% endif %}
 
 {% for row in classes %}
-<div class="container container-fluid">
+<div class="container-lg container-fluid">
 <div class="row">
 <div class="col-lg-7">
     <h2 class="title-text">{{row['classes_title']}}</h2>
@@ -51,7 +51,7 @@ static/images/molly_banner3.jpg
     {% endif %}
 </div>
 <div class="col-lg-5 {{ loop.cycle('order-xl-first', '') }}">
-    <img class="img-fluid rounded mx-auto d-block" src="{{ url_for('static', filename='images/'+row['image']) }}" alt="">
+    <img class="img-change img-fluid rounded mx-auto d-block" src="{{ url_for('static', filename='images/'+row['image']) }}" alt="">
 </div>
 </div>
 </div>

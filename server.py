@@ -66,10 +66,10 @@ def classes_cud():
     if request.method == "GET":
         if data['task'] == 'delete':
             if data['task'] == 'delete':
-                sql = """delete from classes where classes_id = ?"""
+                sql = """delete from registration where classes_id = ?"""
                 values_tuple = (data['id'],)
                 result = run_commit_query(sql, values_tuple, db_path)
-                sql = """delete from registration where classes_id = ?"""
+                sql = """delete from classes where classes_id = ?"""
                 values_tuple = (data['id'],)
                 result = run_commit_query(sql, values_tuple, db_path)
             return redirect(url_for('classes'))
@@ -193,17 +193,15 @@ def news_cud():
 def enrol():
     if request.method == "POST":
         f = request.form
-        print(f)
         session['new_member'] = f
         return render_template("confirm.html", form_data=f)
     elif request.method == "GET":
         temp_form_data={
             "firstname": "James",
             "lastname": "Harvey",
-            "age": "14",
             "email": "jh@gmail.com",
             "birthday": "2006-09-05",
-            "phonenumber": "+64 21 4565 8464",
+            "phonenumber": "+64 21 4565 8465",
             "comment": "No"
         }
         return render_template("enrol.html", **temp_form_data)
